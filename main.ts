@@ -1,4 +1,4 @@
-import { chmodSync, mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 // The one-sentence apology this agent owes its user:
@@ -13,9 +13,7 @@ if (entry.length > 200 || entry.includes("\n") || entry.trim().length === 0) {
 
 const outDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
 mkdirSync(outDir, { recursive: true });
-chmodSync(outDir, 0o755);
 const outPath = join(outDir, "entry.txt");
 writeFileSync(outPath, entry, "utf8");
-chmodSync(outPath, 0o644);
 console.log(entry);
 process.exit(0);
